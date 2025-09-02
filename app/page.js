@@ -1,103 +1,92 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState("Paid");
+  const [message, setMessage] = useState("");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/members", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firstName, lastName, phone, paymentStatus }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setMessage(`✅ ${data.member.firstName} ${data.member.lastName} added as ${data.member.paymentStatus}`);
+      setFirstName("");
+      setLastName("");
+      setPhone("");
+      setPaymentStatus("Paid");
+    } else {
+      setMessage(`❌ ${data.error}`);
+    }
+  };
+
+  return (
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-800">
+      <h1 className="text-3xl font-bold mb-6 text-white">Mosque Membership Form</h1>
+
+      <p className="text-white m-2">Assalam Alykum Wa rahmutallah wa baraktuh!</p>
+
+      <p className="text-white m-2">A message to all brothers! Please become a memeber asap if you havnt yet!</p>
+
+      <p className="text-white m-2">How to become a member:</p>
+
+      <p className="text-white m-2">Donate $50 to the masjid by card inorder to have proof of payment ($10 if you are currently a student)</p>
+
+      <form onSubmit={handleSubmit} className="bg-black border border-white p-6 mt-4 rounded shadow-md w-80">
+        <input
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          className="border p-2 w-full mb-4 rounded"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          className="border p-2 w-full mb-4 rounded"
+          required
+        />
+        <input
+          type="tel"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          className="border p-2 w-full mb-4 rounded"
+          required
+        />
+
+        <select
+          value={paymentStatus}
+          onChange={(e) => setPaymentStatus(e.target.value)}
+          className="border p-2 w-full mb-4 rounded"
+          required
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <option value="Paid">Paid</option>
+          <option value="Will Pay Soon">Will Pay Soon</option>
+        </select>
+
+        <button
+          type="submit"
+          className="bg-green-500 border border-black text-black py-2 px-4 rounded w-full hover:bg-green-600"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          Submit
+        </button>
+      </form>
+
+      {message && <p className="mt-4 text-lg">{message}</p>}
+    </main>
   );
 }
