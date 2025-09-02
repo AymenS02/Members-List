@@ -42,6 +42,9 @@ export default function Home() {
 
       <p className="text-white m-2">Donate $50 to the masjid by card inorder to have proof of payment ($10 if you are currently a student)</p>
 
+      <p className="text-white m-2">This form is only to gather a list of everyone we can count on when the day of voting comes, which can be very soon!</p>
+      
+      <p className="text-white m-2">Fill out the form below!</p>
       <form onSubmit={handleSubmit} className="bg-black border border-white p-6 mt-4 rounded shadow-md w-80">
         <input
           type="text"
