@@ -40,7 +40,7 @@ export default function Home() {
 
       <p className="text-[#F1F0E4] m-2 text-center">How to become a member:</p>
 
-      <p className="text-[#F1F0E4] m-2 text-center">Donate $50 to the masjid by card inorder to have proof of payment ($10 if you are currently a student)</p>
+      <p className="text-[#F1F0E4] m-2 text-center">Donate $50 to the masjid by card in order to have proof of payment ($10 if you are currently a student)</p>
 
       <p className="text-[#F1F0E4] m-2 text-center">This form is only to gather a list of everyone we can count on when the day of voting comes, which can be very soon!</p>
 
