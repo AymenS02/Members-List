@@ -31,7 +31,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-[#3E3F29] text-center">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-[#3E3F29] text-center py-20">
       <h1 className="text-3xl font-bold mb-6 text-[#F1F0E4]">Mosque Membership Form</h1>
 
       <p className="text-[#F1F0E4] m-2 text-center">Assalam Alykum Wa rahmutallah wa baraktuh!</p>
