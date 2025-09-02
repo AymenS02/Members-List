@@ -31,21 +31,21 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-800">
-      <h1 className="text-3xl font-bold mb-6 text-white">Mosque Membership Form</h1>
+    <main className="flex flex-col items-center justify-center min-h-screen bg-[#3E3F29] text-center">
+      <h1 className="text-3xl font-bold mb-6 text-[#F1F0E4]">Mosque Membership Form</h1>
 
-      <p className="text-white m-2">Assalam Alykum Wa rahmutallah wa baraktuh!</p>
+      <p className="text-[#F1F0E4] m-2 text-center">Assalam Alykum Wa rahmutallah wa baraktuh!</p>
 
-      <p className="text-white m-2">A message to all brothers! Please become a memeber ASAP if you haven&apos;t yet!</p>
+      <p className="text-[#F1F0E4] m-2 text-center">A message to all brothers! Please become a memeber ASAP if you haven&apos;t yet!</p>
 
-      <p className="text-white m-2">How to become a member:</p>
+      <p className="text-[#F1F0E4] m-2 text-center">How to become a member:</p>
 
-      <p className="text-white m-2">Donate $50 to the masjid by card inorder to have proof of payment ($10 if you are currently a student)</p>
+      <p className="text-[#F1F0E4] m-2 text-center">Donate $50 to the masjid by card inorder to have proof of payment ($10 if you are currently a student)</p>
 
-      <p className="text-white m-2">This form is only to gather a list of everyone we can count on when the day of voting comes, which can be very soon!</p>
+      <p className="text-[#F1F0E4] m-2 text-center">This form is only to gather a list of everyone we can count on when the day of voting comes, which can be very soon!</p>
 
-      <p className="text-white m-2">Fill out the form below!</p>
-      <form onSubmit={handleSubmit} className="bg-black border border-white p-6 mt-4 rounded shadow-md w-80">
+      <p className="text-[#F1F0E4] m-2 text-center">Fill out the form below!</p>
+      <form onSubmit={handleSubmit} className="bg-[#7D8D86] border border-[#BCA88D] text-[#F1F0E4] p-6 my-4 rounded shadow-md w-80">
         <input
           type="text"
           placeholder="First Name"
@@ -83,7 +83,7 @@ export default function Home() {
 
         <button
           type="submit"
-          className="bg-green-500 border border-black text-black py-2 px-4 rounded w-full hover:bg-green-600"
+          className="bg-[#BCA88D] border border-[#F1F0E4] text-black py-2 px-4 rounded w-full hover:bg-[#BCB58D] transition duration-300"
         >
           Submit
         </button>
