@@ -70,13 +70,13 @@ export default function Home() {
                     السلام عليكم ورحمة الله وبركاته
                   </p>
                   <p className="text-blue-300 text-sm">
-                    Peace be upon you and God's mercy and blessings
+                    Peace be upon you and God&apos;s mercy and blessings
                   </p>
                 </div>
 
                 <div className="space-y-3 text-gray-200">
                   <p className="font-medium text-white">
-                    🕌 A message to all brothers! Please become a member ASAP if you haven't yet!
+                    🕌 A message to all brothers! Please become a member ASAP if you haven&apos;t yet!
                   </p>
                   
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
