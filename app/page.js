@@ -1,6 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Users, CheckCircle, ArrowDown, Phone, User } from "lucide-react";
+import { gsap } from "gsap";
 
 export default function Home() {
   const [firstName, setFirstName] = useState("");
@@ -9,6 +10,10 @@ export default function Home() {
   const [paymentStatus, setPaymentStatus] = useState("Paid");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [membersLength, setMembersLength] = useState(0);
+  const [animatedCount, setAnimatedCount] = useState(0);
+  
+  const countRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +44,59 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    const fetchMembersLength = async () => {
+      try {
+        const res = await fetch("/api/members");
+        const data = await res.json();
+
+        setMembersLength(data.length);
+      } catch (error) {
+        console.error("Failed to fetch members length:", error);
+      }
+    };
+
+    fetchMembersLength();
+  }, []);
+
+  // Animate the counter when membersLength changes
+  useEffect(() => {
+    if (membersLength > 0) {
+      const tl = gsap.timeline();
+      
+      // First, scale up the container for emphasis
+      tl.from(countRef.current, {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.3,
+        ease: "back.out(1.7)"
+      });
+      
+      // Then animate the number counting up
+      tl.to(
+        { value: 0 },
+        {
+          value: membersLength,
+          duration: 2,
+          ease: "power2.out",
+          onUpdate: function() {
+            setAnimatedCount(Math.round(this.targets()[0].value));
+          }
+        },
+        "-=0.1" // Start slightly before the scale animation ends
+      );
+      
+      // Add a subtle pulse effect at the end
+      tl.to(countRef.current, {
+        scale: 1.05,
+        duration: 0.2,
+        ease: "power2.inOut",
+        yoyo: true,
+        repeat: 1
+      });
+    }
+  }, [membersLength]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900">
       <div className="absolute inset-0 bg-black/20"></div>
@@ -50,9 +108,17 @@ export default function Home() {
             <Users size={32} />
           </div>
           <h1 className="text-4xl font-bold text-white mb-2">
-            Mosque Membership Registration
+            Mosque Membership Notice
           </h1>
-          <p className="text-gray-300">Join our community of believers</p>
+          <h2 className="text-lg font-semibold text-gray-600 mb-4">
+            Total Members
+          </h2>
+          <div ref={countRef}>
+            <p className="text-6xl font-bold text-indigo-600">{animatedCount}</p>
+          </div>
+          <p className="mt-3 text-gray-500 text-sm">
+            Active registrations in the system
+          </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
@@ -76,9 +142,19 @@ export default function Home() {
 
                 <div className="space-y-3 text-gray-200">
                   <p className="font-medium text-white">
-                    🕌 A message to all brothers! Please become a member ASAP if you haven&apos;t yet!
+                    🕌 A message to all brothers and sisters! Please become a member ASAP if you haven&apos;t yet!
                   </p>
-                  
+
+                  <p className="font-medium text-white">This list is to keep track of people who want a change at Mountain masjid</p>
+
+                  <p className="font-medium text-white">Some of our aims are to keep our Imam Shaykh Reda as the Imam at the masjid, we find it crucial to have a strong support system in place.</p>
+
+                  <p className="font-medium text-white">Another aim is to improve the system, we want to have more imams working at the masjid just like other masjids have multiple imams for different roles.</p>
+
+                  <p className="font-medium text-white">We also want a transparent board with clear communication and decision-making processes. A board that we can trust and rely on to keep their promises.</p>
+
+                  <p className="font-medium text-white">Filling this form means that we can count on you to be there when a voting happens, to support the cause for a better masjid and to advocate for the positive changes we mentioned above.</p>
+
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
                     <h3 className="font-semibold text-white mb-2">How to become a member:</h3>
                     <ul className="space-y-2 text-sm">
