@@ -94,7 +94,7 @@ export default function Home() {
 
                       <p className="font-medium text-white">This list is to keep track of people who want a change at Mountain masjid</p>
 
-                      <p className="font-medium text-white">Some of our aims are to keep our Imam Shaykh Reda as the Imam at the masjid, we find it crucial to have a strong support system in place.</p>
+                      <p className="font-medium text-white">One of our main goals is to have Shaykh Reda reinstated as the Imam at the masjid after his dismissal on the morning of September 20th. We believe it is crucial to have a strong support system in place.</p>
 
                       <p className="font-medium text-white">Another aim is to improve the system, we want to have more imams working at the masjid just like other masjids have multiple imams for different roles.</p>
 
