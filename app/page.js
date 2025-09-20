@@ -130,7 +130,7 @@ export default function Home() {
                       </div>
                       <div className="bg-orange-500/20 border border-orange-500/30 rounded-lg p-4 backdrop-blur-sm">
                       <p className="text-orange-200 text-sm">
-                        <strong className="text-orange-100">Important:</strong> This form gathers a list of everyone we can count on when the day of voting comes, which can be very soon!
+                        <strong className="text-orange-100">Important:</strong> THE PAYMENT MUST HAVE BEEN MADE IN 2025.This form gathers a list of everyone we can count on when the day of voting comes, which can be very soon!
                       </p>
                       </div>
                     </div>
